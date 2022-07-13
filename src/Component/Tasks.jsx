@@ -4,7 +4,7 @@ import Task from './Task'
 
 const Tasks = () => {
   return (
-    <Container display='flex' justifyContent='center'>
+    <Container display='flex'>
         <Task />
         <Task />
         <Task />

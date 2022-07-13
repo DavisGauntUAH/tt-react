@@ -9,7 +9,7 @@ const Task = () => {
                 <Typography variant='h6' component='h3' marginLeft={1}>
                     Event
                 </Typography>
-                <Typography variant='body2' component='subtitle1' marginLeft={2}>
+                <Typography variant='body2' component='div' marginLeft={2}>
                     date
                 </Typography>
             </Grid>
