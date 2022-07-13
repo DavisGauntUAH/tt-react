@@ -1,17 +1,23 @@
 import { Box, Container, TextField, Typography, Grid, Checkbox, Button } from '@mui/material'
 import React, { useState } from 'react'
+import { useAddNewTaskMutation } from '../feature/api/apiSlice'
 
 const EventEntry = () => {
     const [task, setTask] = useState('')
     const [dayTime, setDayTime] = useState('')
     const [checked, setChecked] = useState(false)
+    const [addNewTask, { isLoading }] = useAddNewTaskMutation()
 
-    const handleSubmit = () => {
-        if(task !== '' && dayTime !== ''){
-            console.log(`${task}\n${dayTime} \n${checked}`)
-            setTask('')
-            setDayTime('')
-            setChecked(false)
+    const handleSubmit = async() => {
+        if(task !== '' && dayTime !== '' && !isLoading){
+            try{
+                await addNewTask({text:task, day:dayTime, reminder:checked}).unwrap()
+                setTask('')
+                setDayTime('')
+                setChecked(false)
+            } catch (err) {
+                console.error('Failed to save task: ', err)
+            }
         }
         
     }
